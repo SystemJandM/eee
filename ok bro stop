@@ -1,0 +1,439 @@
+Item85.MouseButton1Click:Connect(function()
+    if Toggled74 then
+        Toggled74 = false
+        Item85.BackgroundColor3 = Color3.fromRGB(55,55,55)
+        Item85.Text = "Buffalkor Island"
+        Item85.TextColor3 = Color3.new(1,1,1)
+        unFloat()
+        cancelTween()
+    else
+        Toggled74 = true
+        Item85.BackgroundColor3 = Color3.new(0,255,255)
+        Item85.Text = "Mining!"
+        Item85.TextColor3 = Color3.fromRGB(0,0,0)
+        Float()
+        local POs = Vector3.new(1584, 384, 107)
+        while Toggled74 == true do
+            
+            if STOPIT == true then firesignal(Item85.MouseButton1Click) return end
+            wait()
+            local Blocks = game.Workspace.WildernessBlocks
+            for i,v in pairs(Blocks:GetChildren()) do
+                if (POs - v.Position).magnitude < 600 and v:FindFirstChild("1") then
+                    if Toggled74 == true then
+                        tween, Time = goToPoint(v.Position, 0)
+                        wait(Time - 0.5)
+                        repeat hitBlock(v)
+                        until v:FindFirstChild("1") == nil
+                    end
+                end
+            end
+        end
+    end
+end)
+
+Item86.MouseButton1Click:Connect(function()
+    if Toggled75 then
+        Toggled75 = false
+        Item86.BackgroundColor3 = Color3.fromRGB(55,55,55)
+        Item86.Text = "Diamond Island"
+        Item86.TextColor3 = Color3.new(1,1,1)
+        unFloat()
+        cancelTween()
+    else
+        Toggled75 = true
+        Item86.BackgroundColor3 = Color3.new(0,255,255)
+        Item86.Text = "Mining!"
+        Item86.TextColor3 = Color3.fromRGB(0,0,0)
+        Float()
+        POs = Vector3.new(2752, 285, 1196)
+        wait(1)
+        while Toggled75 == true do
+            wait()
+            
+            if STOPIT == true then firesignal(Item86.MouseButton1Click) return end
+            
+Blocks = game.Workspace.WildernessBlocks
+for i,v in pairs(Blocks:GetChildren()) do
+if (POs - v.Position).magnitude < 600 and v:FindFirstChild("1") then
+    if Toggled75 == true then
+    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude > 23 then
+        Point = v.Position
+        Distance = (HR.Position - Point).Magnitude
+        Speed = 20
+        Time = Distance/Speed
+        tween = TS:Create(HR, TweenInfo.new(Time, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0), {CFrame = CFrame.new(Point)})
+        tween:Play()
+        wait(Time - 2)
+    end
+    repeat
+        hitBlock()
+    until
+        v:FindFirstChild("1") == nil
+    end
+end
+end
+        end
+    end
+end)
+
+local VoidMining = Instance.new("TextButton")
+VoidMining.Position = UDim2.new(0,0,1,21)
+VoidMining.Size = UDim2.new(0,70,0,20)
+VoidMining.BackgroundColor3 = Color3.fromRGB(63,63,63)
+VoidMining.BorderSizePixel = 1
+VoidMining.ZIndex = 2
+VoidMining.Parent = Notification11
+VoidMining.Text = "Void Rocks"
+VoidMining.TextColor3 = Color3.fromRGB(250,250,250)
+VoidMining.TextScaled = true
+VoidMining.MouseButton1Click:Connect(function()
+    if Toggled83 then
+        Toggled83 = false
+        VoidMining.BackgroundColor3 = Color3.fromRGB(55,55,55)
+        VoidMining.Text = "Void Rocks"
+        VoidMining.TextColor3 = Color3.new(1,1,1)
+        unFloat()
+        cancelTween()
+    else
+        Toggled83 = true
+        VoidMining.BackgroundColor3 = Color3.new(0,255,255)
+        VoidMining.Text = "Mining!"
+        VoidMining.TextColor3 = Color3.fromRGB(0,0,0)
+        Float()
+        local Continue = 0
+        --pickingPlants = true
+        --coroutine.wrap(function()
+        --    while pickingPlants do
+        --        task.wait()
+        --        pickWildernessPlantAura("voidParasite")
+        --    end
+        --end)()
+        while Toggled83 == true do
+            
+            if STOPIT == true then firesignal(VoidMining.MouseButton1Click) return end
+            
+            wait()
+            local Rocks = getVoidRocks()
+            for i,v in pairs(Rocks) do
+                if Toggled83 == true then
+                    tween, Time = goToPoint(v.Position, 0)
+                    if Time then
+                        wait(Time - 2)
+                    end
+                    if v:FindFirstChild("1") then
+                        equipPick()
+                        hitBlock(v)
+                    else
+                        --equipShovel() -- not nessicary
+                        digSpot(v)
+                    end
+                end
+                break
+            end
+        end
+    end
+end)
+
+local ElectriteMining = Instance.new("TextButton")
+ElectriteMining.Position = UDim2.new(0,71,1,21)
+ElectriteMining.Size = UDim2.new(0,70,0,20)
+ElectriteMining.BackgroundColor3 = Color3.fromRGB(63,63,63)
+ElectriteMining.BorderSizePixel = 1
+ElectriteMining.ZIndex = 2
+ElectriteMining.Parent = Notification11
+ElectriteMining.Text = "Electrite"
+ElectriteMining.TextColor3 = Color3.fromRGB(250,250,250)
+ElectriteMining.TextScaled = true
+ElectriteMining.Visible = false
+
+ElectriteMining.MouseButton1Click:Connect(function()
+    if Toggled85 then
+        Toggled85 = false
+        ElectriteMining.BackgroundColor3 = Color3.fromRGB(55,55,55)
+        ElectriteMining.Text = "Electrite"
+        ElectriteMining.TextColor3 = Color3.new(1,1,1)
+        Character.HumanoidRootPart:FindFirstChild("BodyVelocity"):Destroy()
+        cancelTween()
+    else
+        Toggled85 = true
+        ElectriteMining.BackgroundColor3 = Color3.new(0,255,255)
+        ElectriteMining.Text = "Mining!"
+        ElectriteMining.TextColor3 = Color3.fromRGB(0,0,0)
+        local BV = Instance.new("BodyVelocity")
+        local YSpeed = 0
+        BV.Velocity = Vector3.new(0,0,0)
+        BV.Parent = Character.HumanoidRootPart
+        BV.MaxForce = Vector3.new(0,math.huge,0)
+        local Pickaxe = Player.Backpack:FindFirstChild("opalPickaxe")
+        local AltPickaxe = Player.Backpack:FindFirstChild("diamondPickaxe")
+        local Shovel = Player.Backpack:FindFirstChild("shovelStone")
+        local Continue = 0
+        wait(1)
+        while Toggled85 == true do
+            wait()
+            Blocks = game.Workspace.WildernessBlocks
+            for i,v in pairs(Blocks:GetChildren()) do
+                if v.Name == "rockElectrite" and v:FindFirstChild("1") then
+                    if Toggled85 == true then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude > 23 then
+                            Point = v.Position
+                            Distance = (HR.Position - Point).Magnitude
+                            Speed = 20
+                            Time = Distance/Speed
+                            tween = TS:Create(HR, TweenInfo.new(Time, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0), {CFrame = CFrame.new(Point)})
+                            tween:Play()
+                            wait(Time - 2)
+                        end
+                        repeat
+                        equipPick()
+                        hitBlock(v)
+                        Continue = Continue + 1
+                        until
+                        v:FindFirstChild("1") == nil or Continue > 20 or Toggled85 == false
+                    end
+                    Continue = 0
+                end
+            end
+        end
+    end
+end)
+
+local SnowMining = Instance.new("TextButton")
+SnowMining.Position = UDim2.new(0,0,1,42)
+SnowMining.Size = UDim2.new(0,70,0,20)
+SnowMining.BackgroundColor3 = Color3.fromRGB(63,63,63)
+SnowMining.BorderSizePixel = 1
+SnowMining.ZIndex = 2
+SnowMining.Parent = Notification11
+SnowMining.Text = "Snow"
+SnowMining.TextColor3 = Color3.fromRGB(250,250,250)
+SnowMining.TextScaled = true
+SnowMining.MouseButton1Click:Connect(function()
+    if Toggled86 then
+        Toggled86 = false
+        SnowMining.BackgroundColor3 = Color3.fromRGB(55,55,55)
+        SnowMining.Text = "Snow"
+        SnowMining.TextColor3 = Color3.new(1,1,1)
+        unFloat()
+        cancelTween()
+    else
+        Toggled86 = true
+        SnowMining.BackgroundColor3 = Color3.new(0,255,255)
+        SnowMining.Text = "Mining!"
+        SnowMining.TextColor3 = Color3.fromRGB(0,0,0)
+        Float()
+        local Continue = 0
+        while Toggled86 == true do
+            wait()
+            
+            if STOPIT == true then firesignal(SnowMining.MouseButton1Click) return end
+            
+            Blocks = game.Workspace.WildernessBlocks
+            for i,v in pairs(Blocks:GetChildren()) do
+                if v.Name == "pileSnow" then
+                    if Toggled86 == true then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude > 23 then
+                            Point = v.Position - Vector3.new(0,3,0)
+                            Distance = (HR.Position - Point).Magnitude
+                            Speed = 20
+                            Time = Distance/Speed
+                            tween = TS:Create(HR, TweenInfo.new(Time, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0), {CFrame = CFrame.new(Point)})
+                            tween:Play()
+                            wait(Time - 2)
+                        end
+                        local shovelType = getShovel()
+                        repeat
+                            local args = {
+                            [1] = {
+                            ["shovelType"] = shovelType,
+                            ["block"] = v
+                            }}
+                            game:GetService("ReplicatedStorage").rbxts_include.node_modules["@rbxts"].net.out._NetManaged.client_request_21:InvokeServer(unpack(args))
+                            Continue = Continue + 1
+                        until
+                        v:FindFirstChild("Targettable") == nil or Continue == 20 or Toggled86 == false
+                        end
+                    Continue = 0
+                end
+            end
+        end
+    end
+end)
+local IronMining = Instance.new("TextButton")
+IronMining.Position = UDim2.new(0,0,1,42)
+IronMining.Size = UDim2.new(0,70,0,20)
+IronMining.BackgroundColor3 = Color3.fromRGB(63,63,63)
+IronMining.BorderSizePixel = 1
+IronMining.ZIndex = 2
+IronMining.Parent = Notification11
+IronMining.Text = "Iron Rock"
+IronMining.TextColor3 = Color3.fromRGB(250,250,250)
+IronMining.TextScaled = true
+IronMining.MouseButton1Click:Connect(function()
+    if Toggled86 then
+        Toggled86 = false
+        IronMining.BackgroundColor3 = Color3.fromRGB(55,55,55)
+        IronMining.Text = "Iron Rock"
+        IronMining.TextColor3 = Color3.new(1,1,1)
+        unFloat()
+        cancelTween()
+    else
+        Toggled86 = true
+        IronMining.BackgroundColor3 = Color3.new(0,255,255)
+        IronMining.Text = "Mining!"
+        IronMining.TextColor3 = Color3.fromRGB(0,0,0)
+        Float()
+        local Continue = 0
+        while Toggled86 == true do
+            wait()
+            
+            if STOPIT == true then firesignal(IronMining.MouseButton1Click) return end
+            
+            Blocks = game.Workspace.WildernessBlocks
+            for i,v in pairs(Blocks:GetChildren()) do
+                if v.Name == "rockIron" then
+                    if Toggled86 == true then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude > 23 then
+                            Point = v.Position - Vector3.new(0,3,0)
+                            Distance = (HR.Position - Point).Magnitude
+                            Speed = 20
+                            Time = Distance/Speed
+                            tween = TS:Create(HR, TweenInfo.new(Time, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0), {CFrame = CFrame.new(Point)})
+                            tween:Play()
+                            wait(Time - 2)
+                        end
+                       repeat task.wait()
+                    game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.CLIENT_BLOCK_HIT_REQUEST:InvokeServer(unpack({
+                        [1] = {
+                            ["vimwthaxavvpzHoxykyiYn"] = "\7\240\159\164\163\240\159\164\161\7\n\7\n\7\nchzjbxfovFcotaa",
+                            ["part"] = v:FindFirstChild("Targettable"),
+                            ["block"] = v
+                        }
+                    }))
+                       until not v or not v:FindFirstChild("Targettable")
+
+                end
+            end
+        end
+end
+end
+end)
+local Stonerockmine = Instance.new("TextButton")
+Stonerockmine.Position = UDim2.new(0,0,1,42)
+Stonerockmine.Size = UDim2.new(0,70,0,20)
+Stonerockmine.BackgroundColor3 = Color3.fromRGB(63,63,63)
+Stonerockmine.BorderSizePixel = 1
+Stonerockmine.ZIndex = 2
+Stonerockmine.Parent = Notification11
+Stonerockmine.Text = "Stone Rock"
+Stonerockmine.TextColor3 = Color3.fromRGB(250,250,250)
+Stonerockmine.TextScaled = true
+Stonerockmine.MouseButton1Click:Connect(function()
+    if Toggled86 then
+        Toggled86 = false
+        Stonerockmine.BackgroundColor3 = Color3.fromRGB(55,55,55)
+        Stonerockmine.Text = "Stone Rock"
+        Stonerockmine.TextColor3 = Color3.new(1,1,1)
+        unFloat()
+        cancelTween()
+    else
+        Toggled86 = true
+        Stonerockmine.BackgroundColor3 = Color3.new(0,255,255)
+        Stonerockmine.Text = "Mining!"
+        Stonerockmine.TextColor3 = Color3.fromRGB(0,0,0)
+        Float()
+        local Continue = 0
+        while Toggled86 == true do
+            wait()
+            
+            if STOPIT == true then firesignal(Stonerockmine.MouseButton1Click) return end
+            
+            Blocks = game.Workspace.WildernessBlocks
+            for i,v in pairs(Blocks:GetChildren()) do
+                if v.Name == "rockStone" then
+                    if Toggled86 == true then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude > 23 then
+                            Point = v.Position - Vector3.new(0,3,0)
+                            Distance = (HR.Position - Point).Magnitude
+                            Speed = 20
+                            Time = Distance/Speed
+                            tween = TS:Create(HR, TweenInfo.new(Time, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0), {CFrame = CFrame.new(Point)})
+                            tween:Play()
+                            wait(Time - 2)
+                        end
+                       repeat task.wait()
+                    game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.CLIENT_BLOCK_HIT_REQUEST:InvokeServer(unpack({
+                        [1] = {
+                            ["vimwthaxavvpzHoxykyiYn"] = "\7\240\159\164\163\240\159\164\161\7\n\7\n\7\nchzjbxfovFcotaa",
+                            ["part"] = v:FindFirstChild("Targettable"),
+                            ["block"] = v
+                        }
+                    }))
+                       until not v or not v:FindFirstChild("Targettable")
+
+                end
+            end
+        end
+end
+end
+end)
+local justcoalbro = Instance.new("TextButton")
+justcoalbro.Position = UDim2.new(0,0,1,42)
+justcoalbro.Size = UDim2.new(0,70,0,20)
+justcoalbro.BackgroundColor3 = Color3.fromRGB(63,63,63)
+justcoalbro.BorderSizePixel = 1
+justcoalbro.ZIndex = 2
+justcoalbro.Parent = Notification11
+justcoalbro.Text = "Coal Rock"
+justcoalbro.TextColor3 = Color3.fromRGB(250,250,250)
+justcoalbro.TextScaled = true
+justcoalbro.MouseButton1Click:Connect(function()
+    if Toggled86 then
+        Toggled86 = false
+        justcoalbro.BackgroundColor3 = Color3.fromRGB(55,55,55)
+        justcoalbro.Text = "Coal Rock"
+        justcoalbro.TextColor3 = Color3.new(1,1,1)
+        unFloat()
+        cancelTween()
+    else
+        Toggled86 = true
+        justcoalbro.BackgroundColor3 = Color3.new(0,255,255)
+        justcoalbro.Text = "Mining!"
+        justcoalbro.TextColor3 = Color3.fromRGB(0,0,0)
+        Float()
+        local Continue = 0
+        while Toggled86 == true do
+            wait()
+            
+            if STOPIT == true then firesignal(justcoalbro.MouseButton1Click) return end
+            
+            Blocks = game.Workspace.WildernessBlocks
+            for i,v in pairs(Blocks:GetChildren()) do
+                if v.Name == "rockCoal" then
+                    if Toggled86 == true then
+                        if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Position).magnitude > 23 then
+                            Point = v.Position - Vector3.new(0,3,0)
+                            Distance = (HR.Position - Point).Magnitude
+                            Speed = 20
+                            Time = Distance/Speed
+                            tween = TS:Create(HR, TweenInfo.new(Time, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0), {CFrame = CFrame.new(Point)})
+                            tween:Play()
+                            wait(Time - 2)
+                        end
+                       repeat task.wait()
+                    game:GetService("ReplicatedStorage").rbxts_include.node_modules:FindFirstChild("@rbxts").net.out._NetManaged.CLIENT_BLOCK_HIT_REQUEST:InvokeServer(unpack({
+                        [1] = {
+                            ["vimwthaxavvpzHoxykyiYn"] = "\7\240\159\164\163\240\159\164\161\7\n\7\n\7\nchzjbxfovFcotaa",
+                            ["part"] = v:FindFirstChild("Targettable"),
+                            ["block"] = v
+                        }
+                    }))
+                       until not v or not v:FindFirstChild("Targettable")
+
+                end
+            end
+        end
+end
+end
+end)
